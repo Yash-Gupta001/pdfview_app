@@ -15,19 +15,23 @@ class Viewpdf extends StatelessWidget {
     // Extract the file name from the file path
     String fileName = '';
     if (controller.status.value.isNotEmpty) {
-      fileName = controller.status.value.split('/').last;//last part of the file path as the file name
+      fileName = controller.status.value.split('/').last;
     }
 
-    return Scaffold(
-      appBar: CustomAppbar(
-        title: fileName, //PDF file name in the AppBar
-        leading: true,
+    return SafeArea(
+      child: Scaffold(
+        appBar: CustomAppbar(
+          title: fileName,
+          leading: true,
+        ),
+        body: Obx(() {
+          return controller.status.value.isNotEmpty
+              ? controller.status.value.startsWith('http')
+                  ? SfPdfViewer.network(controller.status.value)  // For remote PDFs use network
+                  : SfPdfViewer.file(File(controller.status.value))  // For local PDFs use file
+              : Center(child: CircularProgressIndicator());
+        }),
       ),
-      body: Obx(() {
-        return controller.status.value.isNotEmpty
-            ? SfPdfViewer.file(File(controller.status.value))  
-            : Center(child: CircularProgressIndicator());  // Show a loading indicator until pdf loads
-      }),
     );
   }
 }

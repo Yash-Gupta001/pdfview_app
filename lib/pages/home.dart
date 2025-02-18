@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import '../controllers/pdfcontroller.dart';
 import '../ui_component/customappbar.dart';
 import '../ui_component/custombutton.dart';
-import 'viewpdf.dart'; // Import the Viewpdf screen
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -24,27 +23,38 @@ class Home extends StatelessWidget {
               CustomButton(
                 text: 'assets PDF 1',
                 onPressed: () async {
-                  await controller.openPdfFile(0);
-                  Get.to(() => Viewpdf());
+                  await controller.openFile(0);  // Open the file
                 },
               ),
               SizedBox(height: 8),
               CustomButton(
                 text: 'assets PDF 2',
                 onPressed: () async {
-                  await controller.openPdfFile(1);
-                  Get.to(() => Viewpdf());
+                  await controller.openFile(1);
                 },
               ),
               SizedBox(height: 8),
               CustomButton(
                 text: 'assets PDF 3',
                 onPressed: () async {
-                  await controller.openPdfFile(2);
-                  Get.to(() => Viewpdf());
+                  await controller.openFile(2);
                 },
               ),
-              SizedBox(height: 20),
+              
+              SizedBox(height: 8),
+              CustomButton(
+                text: 'DOCX type',
+                onPressed: () async {
+                  await controller.openFile(3);  // DOCX file
+                },
+              ),
+              SizedBox(height: 8),
+              CustomButton(
+                text: 'online pdf',
+                onPressed: () async {
+                  await controller.openFile(4);  // DOCX file
+                },
+              ),
             ],
           ),
         ),
