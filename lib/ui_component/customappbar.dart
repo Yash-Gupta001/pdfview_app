@@ -5,14 +5,14 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final Color backgroundColor;
   final double elevation;
-  final bool leading; // true or false for back button in appbar
+  final bool leading; // bool value for back button in appbar
 
   const CustomAppbar({
     super.key,
     required this.title,
     this.backgroundColor = Colors.lightGreen,
     this.elevation = 4.0,
-    required this.leading,  // true or false for back button in appbar
+    required this.leading, // true or false for back button in appbar
   });
 
   @override

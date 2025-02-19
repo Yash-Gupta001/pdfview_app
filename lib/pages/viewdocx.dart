@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:docx_viewer/docx_viewer.dart';
@@ -22,13 +23,13 @@ class ViewDocx extends StatelessWidget {
           title: fileName,
           leading: true,
         ),
-        body: DocxView(
-          filePath: controller.status.value,
-          fontSize: 18,
-          onError: (error) {
-            print(error);
-          },
-        ),
+        body: Obx(() {
+          return controller.status.value.isNotEmpty
+              ? controller.status.value.startsWith('http')
+                  ? DocxView(filePath: controller.status.value)  // For online DOCX files
+                  : DocxView(filePath: controller.status.value)  // For local DOCX files (pass the path as a string)
+              : Center(child: CircularProgressIndicator());
+        }),
       ),
     );
   }

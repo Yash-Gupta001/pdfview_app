@@ -27,7 +27,7 @@ class Viewpdf extends StatelessWidget {
         body: Obx(() {
           return controller.status.value.isNotEmpty
               ? controller.status.value.startsWith('http')
-                  ? SfPdfViewer.network(controller.status.value)  // For remote PDFs use network
+                  ? SfPdfViewer.network(controller.status.value)  // For online PDFs use network
                   : SfPdfViewer.file(File(controller.status.value))  // For local PDFs use file
               : Center(child: CircularProgressIndicator());
         }),
