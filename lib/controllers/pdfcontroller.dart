@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter/foundation.dart' show kIsWeb; // For platform check
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:http/http.dart' as http; 
 
 import '../pages/viewpdf.dart';
